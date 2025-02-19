@@ -14,9 +14,6 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
-    permissions:
-       id-token: write
-       contents: read
     steps:
       - uses: actions/checkout@v3
         with:
@@ -32,7 +29,7 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           app_location: "/" # Root directory (change this if your HTML files are in a subfolder)
           api_location: "" # No API needed for a static site
-          output_location: "" # No build output directory needed for static files
+          output_location: "index.html" # No build output directory needed for static files
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
