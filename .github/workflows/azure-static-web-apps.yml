@@ -1,0 +1,27 @@
+name: Azure Static Web Apps CI/CD  
+  
+on:  
+  push:  
+    branches:   
+      - main  # Default deployment branch  
+  pull_request:  
+    branches:   
+      - main  # Default deployment branch  
+  
+jobs:  
+  build_and_deploy:  
+    runs-on: ubuntu-latest  
+    name: Build and Deploy  
+    steps:  
+      - uses: actions/checkout@v2  
+      - name: Build And Deploy  
+        id: builddeploy  
+        uses: Azure/static-web-apps-deploy@v1  
+        with:  
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}  
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Provided by GitHub  
+          action: "upload"  
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######  
+          app_location: "/" # App source code path  
+          api_location: "" # API source code path - optional  
+          output_location: "index.html" # Built app content directory - optional  
